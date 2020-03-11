@@ -2,16 +2,18 @@
 
 ## Installation
 
-'''sh
+```sh
 cd path/to/lambda-12
-'''
+```
 
 install package dependencies:
 
-'''sh
+```sh
 pipenv install
-'''
+```
 
 ##Usage
 
-An example script
+```sh
+python lambdata-amin/my_script.py
+```

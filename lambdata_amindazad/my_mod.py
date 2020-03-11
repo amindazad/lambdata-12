@@ -1,13 +1,22 @@
 # lambdata_amindazad/my_mod.py
 import pandas
+from sklearn.model_selection import train_test_split
 
-def split(x) :
-    from sklearn.model_selection import train_test_split
-    train , test = train_test_split(df, train_size=.85, test_size = .15, random_state=42)
-    train , val = train_test_split(train, train_size=.85, test_size = .15, random_state=42)    
-    return  train , test, val
-def find_null(x) :
-    return x.isnull().sum().sort_values()
+class amin_toolbox:
+    def __init__(self):
+        pass
+    def spliter(self, df) :
+        self.df=df
+        """
+        Splits data into train test and validation sets with 85% to 15% ratio. 
+        Random State for all splits are 42
+        """
+        self.train , self.test = train_test_split(self.df, train_size=.85, test_size = .15, random_state=42)
+        self.train , self.val = train_test_split(self.train, train_size=.85, test_size = .15, random_state=42)    
+        return  self.train , self.test, self.val
+
+    def null_finder(self, x) :
+        return self.x.isnull().sum().sort_values()
 
 class MyFrame(pandas.DataFrame):
     """
