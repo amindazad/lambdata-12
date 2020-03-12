@@ -2,7 +2,7 @@
 import pandas
 from sklearn.model_selection import train_test_split
 
-class amin_toolbox:
+class Amin_toolbox:
     def __init__(self):
         pass
     def spliter(self, df) :
@@ -16,8 +16,9 @@ class amin_toolbox:
         return  self.train , self.test, self.val
 
     def null_finder(self, x) :
+        self.x=x
         return self.x.isnull().sum().sort_values()
-
+        
 class MyFrame(pandas.DataFrame):
     """
     pandas.DataFrame should have a column of "abbrev"
