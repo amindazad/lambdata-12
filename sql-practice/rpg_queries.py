@@ -133,7 +133,7 @@ print('avg_item_count', result11)
 print("On average, how many weapons does each Character have?")
 
 query_11 = '''
-SELECT AVG(avg_weapons)
+SELECT AVG(avg_weapons) as avg_weapons
 FROM(SELECT
 	character_id, 
 	COUNT(item_id) AS avg_weapons
@@ -143,7 +143,7 @@ GROUP BY character_id
 ORDER BY avg_weapons DESC)
 '''
 result11 = curs.execute(query_11).fetchall()
-print('avg_item_count', result11)
+print('avg_weapons', result11)
 
 #curs.execute(query)
 result1 = curs.execute(query).fetchall()
