@@ -3,8 +3,7 @@ import sqlite3
 # Costruct a path to the database 
 DB_FILEPATH = 'rpg_db.sqlite3'
 conn = sqlite3.connect(DB_FILEPATH)
-conn.row_factory = sqlite3.Row
-
+#conn.row_factory = sqlite3.Row
 curs = conn.cursor()
 
 print("How many total characters are there?")
@@ -13,6 +12,7 @@ SELECT
 	count(DISTINCT character_id) as characters_count
 FROM charactercreator_character
 '''
+curs.execute(query_1)
 result1 = curs.execute(query_1).fetchall()
 print('characters_count', result1)
 #_______________________________________________
@@ -39,12 +39,16 @@ SELECT
 	count(DISTINCT character_ptr_id) as thief_count
 FROM charactercreator_thief
 '''
+curs.execute(query_2)
 result2 = curs.execute(query_2).fetchall()
 print('cleric_count', result2)
+curs.execute(query_3)
 result3 = curs.execute(query_3).fetchall()
 print('fighter_count', result3)
+curs.execute(query_4)
 result4 = curs.execute(query_4).fetchall()
 print('mage_count', result4)
+curs.execute(query_5)
 result5 = curs.execute(query_5).fetchall()
 print('thief_count', result5)
 
@@ -56,6 +60,7 @@ SELECT
 	count(DISTINCT item_id) as item_count
 FROM armory_item
 '''
+curs.execute(query_6)
 result6 = curs.execute(query_6).fetchall()
 print('item_count', result6)
 #_______________________________________________
@@ -66,6 +71,7 @@ SELECT
 	count(DISTINCT item_ptr_id) as weapon_count
 FROM armory_weapon
 '''
+curs.execute(query_7)
 result7 = curs.execute(query_7).fetchall()
 print('weapon_count', result7)
 
@@ -78,13 +84,14 @@ FROM armory_item
 LEFT JOIN armory_weapon on armory_item.item_id = armory_weapon.item_ptr_id
 WHERE armory_weapon.item_ptr_id is NULL
 '''
+curs.execute(query_9)
 result9 = curs.execute(query_9).fetchall()
 print('non_weapon_count', result9)
-for row in result1:
-    print(type(row))
-    print(row)
-	print(row["non_weapon_items"])
-    print("-----------")
+# for row in result1:
+#     print(type(row))
+#     print(row)
+# 	print(row["non_weapon_items"])
+#     print("-----------")
 
 #_______________________________________________
 print("How many Items does each character have? (Return first 20 rows")
@@ -98,6 +105,7 @@ GROUP BY character_id
 ORDER BY item_count_per_character DESC
 LIMIT 20
 '''
+curs.execute(query_8)
 result8 = curs.execute(query_8).fetchall()
 print('item_count_per_character', result8)
 #_______________________________________________
@@ -113,6 +121,7 @@ GROUP BY character_id
 ORDER BY weapons_per_character DESC
 LIMIT 20
 '''
+curs.execute(query_10)
 result10 = curs.execute(query_10).fetchall()
 print('weapons_per_character', result10)
 #_______________________________________________
@@ -127,6 +136,7 @@ FROM charactercreator_character_inventory
 GROUP BY character_id
 ORDER BY avg_item_count)
 '''
+curs.execute(query_11)
 result11 = curs.execute(query_11).fetchall()
 print('avg_item_count', result11)
 #_______________________________________________
@@ -142,15 +152,16 @@ INNER JOIN armory_weapon ON charactercreator_character_inventory.item_id = armor
 GROUP BY character_id
 ORDER BY avg_weapons DESC)
 '''
+curs.execute(query_11)
 result11 = curs.execute(query_11).fetchall()
 print('avg_weapons', result11)
 
 #curs.execute(query)
-result1 = curs.execute(query).fetchall()
-print('result 1', result1)
+# result1 = curs.execute(query).fetchall()
+# print('result 1', result1)
 
-for row in result1:
-    print(type(row))
-    print(row)
-    print(row["Country"])
-    print("-----------")
+# for row in result1:
+#     print(type(row))
+#     print(row)
+#     print(row["Country"])
+#     print("-----------")
