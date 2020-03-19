@@ -47,3 +47,51 @@ curs = conn.cursor()
 # print(result1)
 
 
+# Load rpg data to postgresql
+import sqlite3
+sl_conn = sqlite3.connect('rpg_db.sqlite3')
+sl_curs = sl_conn.cursor()
+
+row_count = '''SELECT COUNT(*) FROM charactercreator_character'''
+result2 = sl_curs.execute(row_count).fetchall()
+# print(result2)
+
+#Step 1 extract the characters
+get_characters = '''SELECT * FROM charactercreator_character'''
+characters = sl_curs.execute(get_characters).fetchall()
+
+#Step 2 Transform 
+# We need a new table with the appropriate schema
+# Getting the old schema 
+
+old_schema = sl_curs.execute('PRAGMA table_info(charactercreator_character);').fetchall()
+# print(old_schema)
+
+# create_charactercreator_character = '''
+# CREATE TABLE charactercreator_character (
+#     character_id SERIAL PRIMARY KEY,
+#     name VARCHAR(30),
+#     level INT, 
+#     exp INT, 
+#     hp INT,
+#     strenght INT,
+#     intelligence INT,
+#     dexterity INT,
+#     wisdom INT
+# );
+# '''
+# curs.execute(create_charactercreator_character)
+# # conn.commit()
+
+# ex_insert = '''
+# INSERT INTO charactercreator_character
+# (name, level, exp, hp, strenght, intelligence, dexterity, wisdom)
+# VALUES ''' + str(get_characters[0][1:]) + ";"
+
+for get_characters in get_characters:
+    insert_character = '''
+    INSERT INTO charactercreator_character
+    (name, level, exp, hp, strenght, intelligence, dexterity, wisdom)
+    VALUES ''' + str(get_characters[1:]) + ";"
+curs.execute(insert_character)
+conn.commit()
