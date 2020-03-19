@@ -14,10 +14,36 @@ conn = psycopg2.connect(dbname= DB_NAME, user=DB_USER, password=DB_PASSWORD, hos
 print(conn)
 
 ### A "cursor", a structure to iterate over db records to perform queries
-cur = conn.cursor()
-### An example query
-cur.execute('SELECT * from test_table;')
-### Note - nothing happened yet! We need to actually *fetch* from the cursor
-result = cur.fetchone()
+curs = conn.cursor()
 
-print(result)
+# create_table = '''
+# CREATE TABLE test_table (
+#   id        SERIAL PRIMARY KEY,
+#   name  varchar(40) NOT NULL,
+#   data    JSONB
+# );
+# '''
+
+# insert_statement = '''
+# INSERT INTO test_table (name, data) VALUES
+# (
+#   'A row name',
+#   null
+# ),
+# (
+#   'Another row, with JSON',
+#   '{ "a": 1, "b": ["dog", "cat", 42], "c": true }'::JSONB
+# );
+# '''
+# #cur.execute(create_table)
+# #cur.execute(insert_statement)
+# conn.commit()
+
+# query = '''
+# SELECT * FROM test_table;
+# '''
+# cur.execute(query)
+# result1 = cur.fetchall()
+# print(result1)
+
+
