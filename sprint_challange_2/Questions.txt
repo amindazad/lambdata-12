@@ -1,0 +1,13 @@
+In the Northwind database, what is the type of relationship between the Employee and Territory tables?
+many to many as a row in Employee can have many matching rows in Territory, but a row in Territory can have only one matching row in Employee.
+
+What is a situation where a document store (like MongoDB) is appropriate, and what is a situation where it is not appropriate?
+NoSQL(MongoDB) tends to be a better option for modern applications that are larger in size ,have more complex, constantly changing data sets, 
+requiring a flexible data model that doesn’t need to be immediately defined. Most developers or organizations that prefer NoSQL databases, 
+are attracted to the agile features that allow them to go to market faster, make updates faster. Unlike traditional, SQL(relational, Elaphantsql) based, relational databases, 
+NoSQL databases can store and process data in real-time.While SQL databases do still have some specific use cases, NoSQL databases have many features that SQL databases are not capable of handling 
+without tremendous costs, and critical sacrifices of speed, agility, etc.
+
+What is "NewSQL", and what is it trying to achieve?
+NewSQL is a new approach to relational databases that wants to combine transactional ACID (atomicity, consistency, isolation, durability)
+and the horizontal scalability of NoSQL. It sounds like a perfect solution, the best of both worlds.
